@@ -1,0 +1,20 @@
+version: '3'
+services:
+  daemon:
+    image: arm32v7/nginx:stable
+    volumes:
+      - ${HTTP_DATA:-./volumes/data}:/usr/share/nginx/html
+    networks:
+      - web
+      - default
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=web"
+        - "traefik.port=80"
+        - "traefik.frontend.rule=Host:${HTTP_URL:-www.domain.com}"
+        - "traefik.frontend.port=80"
+networks:
+  web:
+    external: true
+
