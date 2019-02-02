@@ -3,7 +3,7 @@ services:
   daemon:
     image: arm32v7/nginx:stable
     volumes:
-      - ${HTTP_DATA:-./volumes/data}:/usr/share/nginx/html
+      - ${HTTP_VOLUME_DATA:-./volumes/data}:/usr/share/nginx/html
     networks:
       - web
       - default
@@ -12,7 +12,7 @@ services:
         - "traefik.enable=true"
         - "traefik.docker.network=web"
         - "traefik.port=80"
-        - "traefik.frontend.rule=Host:${HTTP_URL:-www.domain.com}"
+        - "traefik.frontend.rule=Host:${HTTP_CONF_URL:-www.domain.com}"
         - "traefik.frontend.port=80"
 networks:
   web:
