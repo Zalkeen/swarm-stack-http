@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   daemon:
-    image: arm32v7/nginx:stable
+    image: nginx:stable
     volumes:
       - ${HTTP_VOLUME_DATA:-./volumes/data}:/usr/share/nginx/html
     networks:
