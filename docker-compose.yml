@@ -15,8 +15,10 @@ services:
         - "traefik.enable=true"
         - "traefik.docker.network=web"
         - "traefik.port=80"
-        - "traefik.frontend.rule=Host:${HTTP_CONF_URL:-www.domain.com}"
-        - "traefik.frontend.port=80"
+        - "traefik.main.frontend.rule=Host:${HTTP_CONF_URL:-www.domain.com}"
+        - "traefik.main.frontend.port=80"
+        - "traefik.aux.frontend.rule=Host:${HTTP_CONF_URL_AUX:-www.domain.com}"
+        - "traefik.aux.frontend.port=80"
 configs:
   http:
     file: ./volumes/http.conf
